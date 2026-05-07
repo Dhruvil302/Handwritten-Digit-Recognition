@@ -1,11 +1,17 @@
 import sys
 import subprocess
 from tkinter import *
+from tkinter import filedialog
 
 def track():
 	subprocess.Popen([sys.executable, 'app.py'])
 def image():
-	subprocess.Popen([sys.executable, 'image.py'])
+	filepath = filedialog.askopenfilename(
+		title="Select an image",
+		filetypes=[("Image files", "*.jpg *.jpeg *.png *.bmp *.tiff")]
+	)
+	if filepath:
+		subprocess.Popen([sys.executable, 'image.py', filepath])
 def live_image():
 	subprocess.Popen([sys.executable, 'image_live.py'])
 

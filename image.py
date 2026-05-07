@@ -1,10 +1,19 @@
+import sys
 import cv2
 from PIL import Image
 import numpy as np
 from scipy import ndimage
 import math
 from keras.models import load_model
-img=cv2.imread("files3.jpg",0)
+
+if len(sys.argv) < 2:
+    print("Usage: python image.py <image_path>")
+    sys.exit(1)
+
+img=cv2.imread(sys.argv[1], 0)
+if img is None:
+    print(f"Error: could not read image '{sys.argv[1]}'")
+    sys.exit(1)
 gray=cv2.resize(255-img,(28,28))
 (thresh, gray) = cv2.threshold(gray, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
 while np.sum(gray[0]) == 0:
