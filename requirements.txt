@@ -1,0 +1,12 @@
+# TensorFlow — platform-specific builds
+tensorflow; sys_platform == "win32" or (sys_platform == "darwin" and platform_machine != "arm64")
+tensorflow-macos; sys_platform == "darwin" and platform_machine == "arm64"
+tensorflow-metal; sys_platform == "darwin" and platform_machine == "arm64"
+
+# Core dependencies
+opencv-python
+numpy
+pillow
+scipy
+scikit-learn
+matplotlib

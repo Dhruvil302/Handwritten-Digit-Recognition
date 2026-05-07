@@ -40,8 +40,10 @@ Handwritten-Digit-Recognition/
 Install all dependencies:
 
 ```bash
-pip install tensorflow opencv-python numpy pillow scipy scikit-learn matplotlib
+pip install -r requirements.txt
 ```
+
+> On Apple Silicon Macs (M1/M2/M3/M4) this automatically installs `tensorflow-macos` and `tensorflow-metal` instead of the standard `tensorflow` package.
 
 ## Usage
 
