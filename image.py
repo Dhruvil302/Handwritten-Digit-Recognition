@@ -34,10 +34,10 @@ else:
 
 colsPadding = (int(math.ceil((28-cols)/2.0)),int(math.floor((28-cols)/2.0)))
 rowsPadding = (int(math.ceil((28-rows)/2.0)),int(math.floor((28-rows)/2.0)))
-gray = np.lib.pad(gray,(rowsPadding,colsPadding),'constant')
+gray = np.pad(gray,(rowsPadding,colsPadding),'constant')
 
 def getBestShift(img):
-    cy,cx = ndimage.measurements.center_of_mass(img)
+    cy,cx = ndimage.center_of_mass(img)
 
     rows,cols = img.shape
     shiftx = np.round(cols/2.0-cx).astype(int)
@@ -50,7 +50,7 @@ def shift(img,sx,sy):
     M = np.float32([[1,0,sx],[0,1,sy]])
     shifted = cv2.warpAffine(img,M,(cols,rows))
     return shifted
-gray = np.lib.pad(gray,(rowsPadding,colsPadding),'constant')
+gray = np.pad(gray,(rowsPadding,colsPadding),'constant')
 
 shiftx,shifty = getBestShift(gray)
 shifted = shift(gray,shiftx,shifty)
@@ -60,8 +60,8 @@ data.save('test.png')
 
 model=load_model('CNN_nodel.h5')
 def predict(image):
-    input = cv2.resize(image,(28,28)).reshape((28 , 28,1)).astype('float32') / 255.0
-    return model.predict_classes(np.array([input]))
+    img = cv2.resize(image,(28,28)).reshape((28 , 28,1)).astype('float32') / 255.0
+    return np.argmax(model.predict(np.array([img])), axis=1)
 result=predict(gray)
 str1=str(result)
 str2="Prediction is :"

@@ -1,11 +1,14 @@
-import os
+import sys
+import subprocess
 from tkinter import *
+
 def track():
-	os.system('python app.py')
+	subprocess.Popen([sys.executable, 'app.py'])
 def image():
-	os.system('python image.py')
+	subprocess.Popen([sys.executable, 'image.py'])
 def live_image():
-	os.system('python image_live.py')
+	subprocess.Popen([sys.executable, 'image_live.py'])
+
 r=Tk()
 r.geometry('{}x{}'.format(500,500))
 r_frame=Frame(r,bg='slategray',pady=61,padx=200)

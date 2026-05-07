@@ -1,8 +1,8 @@
 import pickle
 import cv2
 import matplotlib.pyplot as plt
-import keras
 import numpy as np
+import keras
 from keras.datasets import mnist
 from keras.models import load_model
 from keras.utils import to_categorical

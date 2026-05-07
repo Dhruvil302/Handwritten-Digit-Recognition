@@ -5,8 +5,8 @@ from PIL import Image
 
 model=load_model('CNN_nodel.h5')
 def predict(image):
-    input = cv2.resize(image, (28 , 28)).reshape((28 , 28,1)).astype('float32') / 255
-    return model.predict_classes(np.array([input]))
+    img = cv2.resize(image, (28 , 28)).reshape((28 , 28,1)).astype('float32') / 255
+    return np.argmax(model.predict(np.array([img])), axis=1)
 canvas = np.ones((600,600), dtype="uint8") * 255
 
 canvas[100:500,100:500] = 0
@@ -41,7 +41,7 @@ cv2.setMouseCallback("Test Canvas", on_mouse_events)
 
 while(True):
     cv2.imshow("Test Canvas", canvas)
-    key = cv2.waitKey(1) & 0xFF 
+    key = cv2.waitKey(1) & 0xFF
     if key==ord('q'):
         break
     elif key == ord('c'):
@@ -54,4 +54,3 @@ while(True):
         print("PREDICTION : ",result)
 
 cv2.destroyAllWindows()
-

@@ -8,7 +8,7 @@ A CNN-based handwritten digit classifier trained on the MNIST dataset. Supports 
 - **Three prediction modes:**
   - Draw a digit with your mouse on an OpenCV canvas
   - Predict from a saved image file
-  - Predict from a live phone camera feed (via IP Webcam)
+  - Predict from a live laptop webcam feed
 - **Tkinter launcher** (`main.py`) — one window to launch any mode
 - **Evaluation script** — plots training/validation loss curves and a confusion matrix
 
@@ -19,7 +19,7 @@ Handwritten-Digit-Recognition/
 ├── main.py           # Tkinter launcher (TrackPad / Image / Live Image)
 ├── app.py            # Mouse-drawing canvas → predict on keypress
 ├── image.py          # Static image file → predict
-├── image_live.py     # Live phone camera → predict on keypress
+├── image_live.py     # Live webcam → predict on keypress
 ├── history_acc.py    # Plot training history + confusion matrix
 ├── CNN_nodel.h5      # Trained CNN model weights
 ├── CNN_model.h5      # Alternate trained model
@@ -29,7 +29,7 @@ Handwritten-Digit-Recognition/
 
 ## Requirements
 
-- Python 3.7+
+- Python 3.11 or 3.12 (TensorFlow does not support 3.13+)
 - TensorFlow / Keras
 - OpenCV (`opencv-python`)
 - NumPy
@@ -37,13 +37,12 @@ Handwritten-Digit-Recognition/
 - SciPy
 - scikit-learn
 - Matplotlib
+
 Install all dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
-
-> On Apple Silicon Macs (M1/M2/M3/M4) this automatically installs `tensorflow-macos` and `tensorflow-metal` instead of the standard `tensorflow` package.
 
 ## Usage
 
@@ -59,14 +58,14 @@ A window opens with three buttons:
 |--------|--------|--------------|
 | **TrackPad** | `app.py` | Draw a digit with your mouse on a black canvas. Press `p` to predict, `c` to clear, `q` to quit. |
 | **Image** | `image.py` | Loads `files3.jpg`, preprocesses it (threshold → center-of-mass shift → resize to 28×28), and prints the prediction. |
-| **Live Image** | `image_live.py` | Streams frames from a phone camera over HTTP. Press `p` to capture and predict, `q` to quit. |
+| **Live Image** | `image_live.py` | Streams frames from your laptop webcam. Press `p` to capture and predict, `q` to quit. |
 
 ### Run modes directly
 
 ```bash
 python app.py          # Mouse drawing canvas
 python image.py        # Static image prediction
-python image_live.py   # Live phone camera prediction
+python image_live.py   # Live webcam prediction
 ```
 
 ### Live camera setup
