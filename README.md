@@ -37,12 +37,10 @@ Handwritten-Digit-Recognition/
 - SciPy
 - scikit-learn
 - Matplotlib
-- Requests (for live camera mode)
-
 Install all dependencies:
 
 ```bash
-pip install tensorflow opencv-python numpy pillow scipy scikit-learn matplotlib requests
+pip install tensorflow opencv-python numpy pillow scipy scikit-learn matplotlib
 ```
 
 ## Usage
@@ -71,7 +69,7 @@ python image_live.py   # Live phone camera prediction
 
 ### Live camera setup
 
-`image_live.py` fetches frames from `http://<phone-ip>:8080/photo.jpg`. Install the **IP Webcam** app on your Android phone, start the server, and update the `url` variable in `image_live.py` with your phone's IP address.
+`image_live.py` uses your laptop's built-in webcam (device index `0`). No setup required — just run it and point the camera at a handwritten digit.
 
 ### Evaluate the model
 
